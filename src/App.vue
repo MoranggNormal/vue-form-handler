@@ -32,7 +32,7 @@
           type="submit"
           class="btn btn-primary p-3 px-5 w-auto m-auto bg-gradient mt-5"
         >
-          Create Account
+          Criar conta
         </button>
       </form>
     </div>
@@ -66,10 +66,15 @@
 
 
 <script>
+import Vue from "vue";
+import titleMixin from "./mixins/titleMixin";
 import Input from "./components/Input.vue";
+
+Vue.mixin(titleMixin);
 
 export default {
   name: "App",
+  title: "Criar minha conta na Memorar",
   components: {
     Input,
   },
