@@ -51,48 +51,15 @@ export default {
         }
       }
 
-      // Verify if provided phone matches the pattern
-      if (target.id === "phone") {
-        if (!handleForm(target.id, target.value)) {
-          target.classList.remove("is-valid");
-          target.classList.add("is-invalid");
-        } else {
-          target.classList.remove("is-invalid");
-          target.classList.add("is-valid");
-        }
-      }
-
-      // verify if email matches the pattern
-      if (target.id === "email") {
-        if (!handleForm(target.id, target.value)) {
-          target.classList.remove("is-valid");
-          target.classList.add("is-invalid");
-        } else {
-          target.classList.remove("is-invalid");
-          target.classList.add("is-valid");
-        }
-      }
-
-      // Verify if passwords matches the pattern
-      if (target.id === "password" || target.id === "confirm-password") {
-        if (!handleForm(target.id, target.value)) {
-          target.classList.remove("is-valid");
-          target.classList.add("is-invalid");
-        } else {
-          target.classList.remove("is-invalid");
-          target.classList.add("is-valid");
-        }
-      }
-
-      // Verify if the provided CPF matches the pattern
-      if (target.id === "cpf") {
-        if (!handleForm(target.id, target.value)) {
-          target.classList.remove("is-valid");
-          target.classList.add("is-invalid");
-        } else {
-          target.classList.remove("is-invalid");
-          target.classList.add("is-valid");
-        }
+      // Verify if provided value matches the pattern
+      if (
+        target.id === "phone" ||
+        target.id === "email" ||
+        target.id === "password" ||
+        target.id === "confirm-password" ||
+        target.id === "cpf"
+      ) {
+        handleForm(target.id, target.value, target);
       }
     },
   },
