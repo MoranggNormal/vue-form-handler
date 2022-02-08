@@ -26,6 +26,7 @@
           :type="props.type"
           :id="props.id"
           :placeholder="props.placeholder"
+          :errorMessage="props.errorMessage"
           :htmlClass="props.htmlClass"
           :value="props.value"
         />
@@ -108,6 +109,7 @@ export default {
           type: "string",
           value: { name: "" },
           placeholder: "Conte-nos seu nome",
+          errorMessage: "O campo não pode estar vazio.",
         },
         {
           htmlClass: "form-floating mb-3",
@@ -115,6 +117,7 @@ export default {
           type: "number",
           value: { name: "" },
           placeholder: "Precisamos de seu telefone",
+          errorMessage: "Insira um telefone válido.",
         },
         {
           htmlClass: "form-floating mb-3 col-sm-6",
@@ -122,6 +125,7 @@ export default {
           type: "date",
           value: { name: "" },
           placeholder: "Data de nascimento",
+          errorMessage: "Insira uma data válida.",
         },
         {
           htmlClass: "form-floating mb-3 col-sm-6",
@@ -129,6 +133,7 @@ export default {
           type: "email",
           value: { name: "" },
           placeholder: "Digite seu e-mail",
+          errorMessage: "Insira um e-mail válido.",
         },
         {
           htmlClass: "form-floating col-sm-6",
@@ -136,6 +141,7 @@ export default {
           type: "password",
           value: { name: "" },
           placeholder: "Digite uma senha",
+          errorMessage: "O formato da senha está inválido.",
         },
         {
           htmlClass: "form-floating col-sm-6",
@@ -143,6 +149,7 @@ export default {
           type: "password",
           value: { name: "" },
           placeholder: "Confirme sua senha",
+          errorMessage: "O formato da senha está inválido.",
         },
         {
           htmlClass: "form-floating my-3",
@@ -150,6 +157,7 @@ export default {
           type: "text",
           value: { name: "" },
           placeholder: "Digite seu CPF",
+          errorMessage: "Insira um CPF válido.",
         },
       ],
     };

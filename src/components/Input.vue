@@ -9,25 +9,85 @@
       @change="handleChange"
       required
     />
-
+    <div class="invalid-feedback">{{ errorMessage }}</div>
     <label :for="id"> {{ placeholder }} </label>
   </div>
 </template>
 
 <script>
+import {
+  handlePassword,
+  handleEmail,
+  handlePhone,
+  handleCPF,
+} from "../utils/handleForm";
+
 export default {
   name: "Input",
   props: {
     type: String,
     id: String,
     placeholder: String,
+    errorMessage: String,
     htmlClass: String,
     value: Object,
   },
-
   methods: {
-    handleChange: function (e) {
-      console.log(e.target);
+    handleChange: function ({ target }) {
+      // Verify if provided name length is less than 3
+      if (target.id === "name") {
+        if (target.value.length < 3) {
+          target.classList.remove("is-valid");
+          target.classList.add("is-invalid");
+        } else {
+          target.classList.remove("is-invalid");
+          target.classList.add("is-valid");
+        }
+      }
+
+      // Verify if provided phone matches the pattern
+      if (target.id === "phone") {
+        if (!handlePhone(target.value)) {
+          target.classList.remove("is-valid");
+          target.classList.add("is-invalid");
+        } else {
+          target.classList.remove("is-invalid");
+          target.classList.add("is-valid");
+        }
+      }
+
+      // verify if email matches the pattern
+      if (target.id === "email") {
+        if (!handleEmail(target.value)) {
+          target.classList.remove("is-valid");
+          target.classList.add("is-invalid");
+        } else {
+          target.classList.remove("is-invalid");
+          target.classList.add("is-valid");
+        }
+      }
+
+      // Verify if passwords matches the pattern
+      if (target.id === "password" || target.id === "confirm-password") {
+        if (!handlePassword(target.value)) {
+          target.classList.remove("is-valid");
+          target.classList.add("is-invalid");
+        } else {
+          target.classList.remove("is-invalid");
+          target.classList.add("is-valid");
+        }
+      }
+
+      // Verify if the provided CPF matches the pattern
+      if (target.id === "cpf") {
+        if (!handleCPF(target.value)) {
+          target.classList.remove("is-valid");
+          target.classList.add("is-invalid");
+        } else {
+          target.classList.remove("is-invalid");
+          target.classList.add("is-valid");
+        }
+      }
     },
   },
 };
