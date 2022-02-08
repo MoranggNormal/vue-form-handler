@@ -37,7 +37,7 @@
       </form>
     </div>
 
-    <div class="container my-4 col-lg-6 col-xl-8">
+    <div class="container table my-4 col-lg-6 col-xl-8">
       <table id="cadastros" class="table table-striped mt-5">
         <thead>
           <tr>
@@ -192,5 +192,9 @@ body {
 }
 #app {
   font-family: "Work Sans", sans-serif;
+}
+
+.table {
+  overflow: auto;
 }
 </style>
