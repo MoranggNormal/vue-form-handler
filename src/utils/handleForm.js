@@ -1,39 +1,22 @@
-/*
-*   Working but needs update.
-*/
+// Return a match result
 
+const handleForm = (type, value) => {
 
-const handlePhone = (phone) => {
-    if(phone.match(/^(\d{2})\D*(\d{5}|\d{4})\D*(\d{4})$/gm)){
-        return true
+    switch (type) {
+        case 'phone':
+            return value.match(/^(\d{2})\D*(\d{5}|\d{4})\D*(\d{4})$/gm);
+        case 'email':
+            return value.match(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)
+        case 'password':
+            return value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$/)
+        case 'confirm-password':
+            return value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$/)
+        case 'cpf':
+            return value.match(/\d{3}\.?\d{3}\.?\d{3}-?\d{2}/)
+        default:
+            break;
     }
-    return false
+
 }
 
-
-const handleEmail = (email) => {
-    if(email.match(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)){
-        return true
-    }
-    return false
-}
-
-
-const handlePassword = (password) => {
-
-    if(password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$/)){
-        return true
-    }
-    return false
-}
-
-const handleCPF = (cpf) => {
-    if(cpf.match(/\d{3}\.?\d{3}\.?\d{3}-?\d{2}/)){
-        return true
-    }
-    return false
-}
-
-
-
-export {handlePassword, handleEmail, handlePhone, handleCPF}
+export default handleForm

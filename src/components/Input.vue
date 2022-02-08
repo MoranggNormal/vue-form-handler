@@ -15,12 +15,7 @@
 </template>
 
 <script>
-import {
-  handlePassword,
-  handleEmail,
-  handlePhone,
-  handleCPF,
-} from "../utils/handleForm";
+import handleForm from "../utils/handleForm";
 
 export default {
   name: "Input",
@@ -58,7 +53,7 @@ export default {
 
       // Verify if provided phone matches the pattern
       if (target.id === "phone") {
-        if (!handlePhone(target.value)) {
+        if (!handleForm(target.id, target.value)) {
           target.classList.remove("is-valid");
           target.classList.add("is-invalid");
         } else {
@@ -69,7 +64,7 @@ export default {
 
       // verify if email matches the pattern
       if (target.id === "email") {
-        if (!handleEmail(target.value)) {
+        if (!handleForm(target.id, target.value)) {
           target.classList.remove("is-valid");
           target.classList.add("is-invalid");
         } else {
@@ -80,7 +75,7 @@ export default {
 
       // Verify if passwords matches the pattern
       if (target.id === "password" || target.id === "confirm-password") {
-        if (!handlePassword(target.value)) {
+        if (!handleForm(target.id, target.value)) {
           target.classList.remove("is-valid");
           target.classList.add("is-invalid");
         } else {
@@ -91,7 +86,7 @@ export default {
 
       // Verify if the provided CPF matches the pattern
       if (target.id === "cpf") {
-        if (!handleCPF(target.value)) {
+        if (!handleForm(target.id, target.value)) {
           target.classList.remove("is-valid");
           target.classList.add("is-invalid");
         } else {
