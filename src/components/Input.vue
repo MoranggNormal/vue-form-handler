@@ -30,17 +30,7 @@ export default {
   methods: {
     handleChange: function ({ target }) {
       // Verify if provided value matches the pattern
-      if (
-        target.id === "name" ||
-        target.id === "phone" ||
-        target.id === "birthDate" ||
-        target.id === "email" ||
-        target.id === "password" ||
-        target.id === "confirm-password" ||
-        target.id === "cpf"
-      ) {
-        handleForm(target.id, target.value.trim(), target);
-      }
+      handleForm(target.id, target.value.trim(), target);
     },
   },
 };
