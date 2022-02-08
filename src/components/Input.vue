@@ -29,31 +29,11 @@ export default {
   },
   methods: {
     handleChange: function ({ target }) {
-      // Verify if provided date has any value
-      if (target.id === "birthDate") {
-        if (!target.value.length) {
-          target.classList.remove("is-valid");
-          target.classList.add("is-invalid");
-        } else {
-          target.classList.remove("is-invalid");
-          target.classList.add("is-valid");
-        }
-      }
-
-      // Verify if provided name length is less than 3
-      if (target.id === "name") {
-        if (target.value.length < 3) {
-          target.classList.remove("is-valid");
-          target.classList.add("is-invalid");
-        } else {
-          target.classList.remove("is-invalid");
-          target.classList.add("is-valid");
-        }
-      }
-
       // Verify if provided value matches the pattern
       if (
+        target.id === "name" ||
         target.id === "phone" ||
+        target.id === "birthDate" ||
         target.id === "email" ||
         target.id === "password" ||
         target.id === "confirm-password" ||

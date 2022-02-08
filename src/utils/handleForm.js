@@ -17,6 +17,12 @@ const handleForm = (type, value, target) => {
   };
 
   switch (type) {
+    case "name":
+      changeClasses(value.length >= 3, target);
+      break;
+    case "birthDate":
+      changeClasses(value.length, target);
+      break;
     case "phone":
       changeClasses(
         value.match(/^(\d{2})\D*(\d{5}|\d{4})\D*(\d{4})$/gm),
