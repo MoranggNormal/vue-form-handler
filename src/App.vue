@@ -102,7 +102,7 @@ export default {
           type: "string",
           value: { name: "" },
           placeholder: "Conte-nos seu nome",
-          errorMessage: "O campo não pode estar vazio.",
+          errorMessage: "O campo deve ter no mínimo 3 caracteres.",
         },
         {
           htmlClass: "form-floating mb-3",
