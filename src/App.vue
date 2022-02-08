@@ -20,105 +20,19 @@
       </h1>
 
       <form v-on:submit.prevent="onSubmit" id="create-account" class="row gx-1">
-        <div class="form-floating mb-3">
-          <input
-            class="form-control"
-            type="text"
-            id="name"
-            placeholder="Type your name"
-            v-model="userForm.name"
-            required
-          /><label for="name"> Let us know your name </label>
-        </div>
-
-        <div class="form-floating mb-3">
-          <input
-            class="form-control"
-            type="number"
-            id="phoneNumber"
-            placeholder="Type your phone number..."
-            pattern="/^(\d{2})\D*(\d{5}|\d{4})\D*(\d{4})$/gm"
-            v-model="userForm.phone"
-            required
-          /><label for="phoneNumber"> Please, Tell us your phone number</label>
-        </div>
-
-        <div class="form-floating mb-3 col-sm-6">
-          <input
-            class="form-control"
-            type="date"
-            id="birthday"
-            v-model="userForm.birthDate"
-            required
-          /><label for="birthday">When you were born</label>
-        </div>
-
-        <div class="form-floating mb-3 col-sm-6">
-          <input
-            class="form-control"
-            type="email"
-            id="email"
-            placeholder="example@example.com"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-            v-model="userForm.email"
-            required
-          /><label for="email">Type here your e-mail</label>
-        </div>
-
-        <div class="form-floating col-sm-6">
-          <input
-            class="form-control"
-            type="password"
-            id="password"
-            placeholder="3xample@E"
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$"
-            v-model="userForm.password"
-            required
-          />
-          <label for="password">Choose a password</label>
-        </div>
-
-        <small class="ps-4 text-muted d-sm-none"
-          >Your password must contain at least 8 characters, which is 1
-          lowercase, 1 uppercase, 1 number and 1 symbol
-        </small>
-
-        <div class="form-floating col-sm-6">
-          <input
-            class="form-control"
-            type="password"
-            id="confirm-password"
-            placeholder="*********"
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$"
-            v-model="userForm.confirmPassword"
-            required
-          /><label for="confirm-password"> Confirm password </label>
-        </div>
-
-        <small class="ps-4 mb-2 text-muted d-none d-sm-block"
-          >Your password must have at least 8 characters, which is 1 lowercase,
-          1 uppercase, 1 number and 1 symbol
-        </small>
-
-        <div class="form-floating my-3">
-          <input
-            class="form-control"
-            type="text"
-            id="CPF"
-            placeholder="123.456.789.00"
-            pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}"
-            v-model="userForm.cpf"
-            required
-          /><label for="CPF">Type your CPF</label>
-        </div>
-
-        <div class="alert alert-danger" v-if="showErrorMessage">
-          {{ errorMessage }}
-        </div>
+        <Input
+          v-for="(props, index) in inputTemplate"
+          :key="index"
+          :type="props.type"
+          :id="props.id"
+          :placeholder="props.placeholder"
+          :htmlClass="props.htmlClass"
+          :value="props.value"
+        />
 
         <button
           type="submit"
-          class="btn btn-primary p-3 px-5 w-auto m-auto bg-gradient"
+          class="btn btn-primary p-3 px-5 w-auto m-auto bg-gradient mt-5"
         >
           Create Account
         </button>
@@ -141,7 +55,7 @@
           <tr v-for="user in users" :key="user.id">
             <th scope="row">{{ user.id }}</th>
             <td>{{ user.name }}</td>
-            <td>{{ user.phone }}</td>
+            <td v-if="user.phone">{{ user.phone }}</td>
             <td>{{ user.birthDate }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.cpf }}</td>
@@ -149,8 +63,6 @@
         </tbody>
       </table>
     </div>
-
-    <!--<Home test="Hello Vue!" />-->
   </div>
 </template>
 
@@ -162,18 +74,15 @@
 </script>
 
 <script>
-import Home from "./components/Home.vue";
+import Input from "./components/Input.vue";
 
 export default {
   name: "App",
   components: {
-    Home,
+    Input,
   },
   data: () => {
     return {
-      showErrorMessage: false,
-      errorMessage: "Aconteceu algo errado.",
-      userForm: {},
       users: [
         {
           id: 1,
@@ -192,17 +101,74 @@ export default {
           cpf: "111.111.111-99",
         },
       ],
+      inputTemplate: [
+        {
+          htmlClass: "form-floating mb-3",
+          id: "name",
+          type: "string",
+          value: { name: "" },
+          placeholder: "Conte-nos seu nome",
+        },
+        {
+          htmlClass: "form-floating mb-3",
+          id: "phone",
+          type: "number",
+          value: { name: "" },
+          placeholder: "Precisamos de seu telefone",
+        },
+        {
+          htmlClass: "form-floating mb-3 col-sm-6",
+          id: "birthDate",
+          type: "date",
+          value: { name: "" },
+          placeholder: "Data de nascimento",
+        },
+        {
+          htmlClass: "form-floating mb-3 col-sm-6",
+          id: "email",
+          type: "email",
+          value: { name: "" },
+          placeholder: "Digite seu e-mail",
+        },
+        {
+          htmlClass: "form-floating col-sm-6",
+          id: "password",
+          type: "password",
+          value: { name: "" },
+          placeholder: "Digite uma senha",
+        },
+        {
+          htmlClass: "form-floating col-sm-6",
+          id: "confirm-password",
+          type: "password",
+          value: { name: "" },
+          placeholder: "Confirme sua senha",
+        },
+        {
+          htmlClass: "form-floating my-3",
+          id: "cpf",
+          type: "text",
+          value: { name: "" },
+          placeholder: "Digite seu CPF",
+        },
+      ],
     };
   },
   methods: {
     onSubmit: function () {
-      if (this.userForm.password != this.userForm.confirmPassword) {
-        this.errorMessage = "As senhas não coincidem.";
-        this.showErrorMessage = true;
-        return;
-      }
-      this.showErrorMessage = false;
-      this.users.push({ id: this.users.length + 1, ...this.userForm });
+      const getDataFromTemplate = this.inputTemplate.map((item) => {
+        return item.value.name;
+      });
+
+      const user = {
+        name: getDataFromTemplate[0],
+        phone: getDataFromTemplate[1],
+        birthDate: getDataFromTemplate[2],
+        email: getDataFromTemplate[3],
+        password: getDataFromTemplate[4],
+        confirmPassword: getDataFromTemplate[5],
+        cpf: getDataFromTemplate[6],
+      };
     },
   },
 };
