@@ -34,6 +34,17 @@ export default {
   },
   methods: {
     handleChange: function ({ target }) {
+      // Verify if provided date has any value
+      if (target.id === "birthDate") {
+        if (!target.value.length) {
+          target.classList.remove("is-valid");
+          target.classList.add("is-invalid");
+        } else {
+          target.classList.remove("is-invalid");
+          target.classList.add("is-valid");
+        }
+      }
+
       // Verify if provided name length is less than 3
       if (target.id === "name") {
         if (target.value.length < 3) {
