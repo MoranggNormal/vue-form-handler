@@ -39,7 +39,7 @@ export default {
         target.id === "confirm-password" ||
         target.id === "cpf"
       ) {
-        handleForm(target.id, target.value, target);
+        handleForm(target.id, target.value.trim(), target);
       }
     },
   },
