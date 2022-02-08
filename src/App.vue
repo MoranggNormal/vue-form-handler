@@ -24,6 +24,10 @@
           :value="props.value"
         />
 
+        <div class="alert alert-danger" v-if="showErrorMessage">
+          {{ errorMessage }}
+        </div>
+
         <button
           type="submit"
           class="btn btn-primary p-3 px-5 w-auto m-auto bg-gradient mt-5"
@@ -71,6 +75,8 @@ export default {
   },
   data: () => {
     return {
+      showErrorMessage: false,
+      errorMessage: "",
       users: [
         {
           id: 1,
@@ -165,6 +171,14 @@ export default {
         cpf: getDataFromTemplate[6],
       };
 
+      if (user.password != user.confirmPassword) {
+        this.errorMessage = "As senhas não coincidem.";
+        this.showErrorMessage = true;
+        return;
+      }
+
+      this.errorMessage = "";
+      this.showErrorMessage = false;
       console.log(user);
     },
   },
