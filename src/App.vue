@@ -28,6 +28,21 @@
           {{ errorMessage }}
         </div>
 
+        <div
+          class="alert"
+          v-bind:class="{
+            'alert-success': status === 200,
+            'alert-danger': status != 200,
+          }"
+          v-if="status"
+        >
+          {{
+            status === 200
+              ? "Dados enviados"
+              : "Ocorreu algo errado, tente novamente."
+          }}
+        </div>
+
         <button
           type="submit"
           class="btn btn-primary p-3 px-5 w-auto m-auto bg-gradient mt-5"
@@ -38,10 +53,6 @@
     </div>
 
     <div class="container table my-4 col-lg-6 col-xl-8">
-      <div class="alert alert-danger" v-if="!users">
-        Nenhum usúario cadastrado até o momento.
-      </div>
-
       <table id="cadastros" class="table table-striped mt-5" v-if="users">
         <thead>
           <tr>
@@ -72,7 +83,7 @@
 <script>
 import Vue from "vue";
 import titleMixin from "./mixins/titleMixin";
-import axios from "axios";
+import { getData, sendData } from "../services/userData";
 import Input from "./components/Input.vue";
 
 Vue.mixin(titleMixin);
@@ -87,6 +98,7 @@ export default {
     return {
       showErrorMessage: false,
       errorMessage: "",
+      status: "",
       users: "",
       inputTemplate: [
         {
@@ -149,7 +161,7 @@ export default {
     };
   },
   methods: {
-    onSubmit: function () {
+    onSubmit: async function () {
       const getDataFromTemplate = this.inputTemplate.map((item) => {
         return item.value.name;
       });
@@ -170,19 +182,29 @@ export default {
         return;
       }
 
-      this.errorMessage = "";
-      this.showErrorMessage = false;
-      console.log(user);
+      try {
+        this.status = await sendData(
+          `http://localhost:9090/user/create-user/name=${user.name}&phone=${user.phone}&birthDate=${user.birthDate}&email=${user.email}&password=${user.password}&cpf=${user.cpf})`
+        );
+
+        this.users = await getData("/all-users");
+
+        this.errorMessage = "";
+        this.showErrorMessage = false;
+      } catch (error) {
+        return error;
+      }
     },
   },
-  mounted() {
-    axios
-      .get("http://localhost:9090/user/all-users")
-      .then((response) => (this.users = response.data));
+  async created() {
+    try {
+      this.users = await getData("/all-users");
+    } catch (e) {
+      console.log(e);
+    }
   },
 };
 </script>
-
 <style>
 html,
 body {
