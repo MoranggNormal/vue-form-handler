@@ -35,4 +35,5 @@ Run: <code> npm install</code> or <code> yarn </code>
 It won't work properly whitout an api. Here i made the api using Symfony on Back-end.
 <br>
 See the endpoint on: <code>/services/baseUrl.js</code>
+
 The backend project who provide the api is <a href="https://github.com/MoranggNormal/symfony_app">here</a>
