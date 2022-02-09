@@ -165,8 +165,8 @@ export default {
   },
   methods: {
     onSubmit: async function () {
-      this.loading = true;
 
+      // Store typed data into an array and then into an object
       const getDataFromTemplate = this.inputTemplate.map((item) => {
         return item.value.name;
       });
@@ -181,6 +181,27 @@ export default {
         cpf: getDataFromTemplate[6],
       };
 
+      // Verify pattern before continue...
+      if (
+        user.name.length < 3 ||
+        !user.phone.match(/^(\d{2})\D*(\d{5}|\d{4})\D*(\d{4})$/gm) ||
+        !user.birthDate.length ||
+        !user.email.match(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/) ||
+        !user.password.match(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$/
+        ) ||
+        !user.confirmPassword.match(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$/
+        ) ||
+        !user.cpf.match(/\d{3}\.?\d{3}\.?\d{3}-?\d{2}/)
+      ) {
+        return;
+      }
+
+      // Set loading status
+      this.loading = true;
+
+      // Return if passwords dont match
       if (user.password != user.confirmPassword) {
         this.errorMessage = "As senhas não coincidem.";
         this.showErrorMessage = true;
@@ -188,6 +209,7 @@ export default {
         return;
       }
 
+      // Return if email already exists
       if (await verifyEmail(user.email)) {
         this.errorMessage = "Este email já esta em uso.";
         this.showErrorMessage = true;
@@ -195,6 +217,7 @@ export default {
         return;
       }
 
+      // Post to API with user data and imediatly get this dara and store in users
       try {
         this.status = await sendData(
           `http://localhost:9090/user/create-user/name=${user.name}&phone=${user.phone}&birthDate=${user.birthDate}&email=${user.email}&password=${user.password}&cpf=${user.cpf}`
@@ -216,6 +239,8 @@ export default {
           behavior: "smooth",
         });
       }
+
+      // Timeout function to remove status alert
       setTimeout(() => {
         this.status = "";
       }, 5000);
