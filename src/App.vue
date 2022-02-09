@@ -29,6 +29,8 @@
         </div>
 
         <div
+          id="alertResponse"
+          ref="alertResponse"
           class="alert"
           v-bind:class="{
             'alert-success': status === 200,
@@ -193,6 +195,14 @@ export default {
         this.showErrorMessage = false;
       } catch (error) {
         return error;
+      }
+
+      // Scroll down to see newly users
+      const alertResponse = this.$refs.alertResponse;
+      if (this.status === 200) {
+        alertResponse.scrollIntoView({
+          behavior: "smooth",
+        });
       }
     },
   },
