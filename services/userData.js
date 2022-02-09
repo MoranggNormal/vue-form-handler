@@ -18,4 +18,13 @@ const sendData = async (url) => {
   }
 };
 
-export { getData, sendData };
+const verifyEmail = async (email) => {
+  try {
+    const response = await baseUrl.get(`/email=${email}`);
+    return response.data.length;
+  } catch (e) {
+    return e;
+  }
+};
+
+export { getData, sendData, verifyEmail };

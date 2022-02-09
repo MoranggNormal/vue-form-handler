@@ -10,8 +10,8 @@
 <br>
 5 - Send data provided by the user to the database; Done.
 <br>
-6 - Verify if email already exists on database;
+6 - Verify if email already exists on database; Done.
 <br>
-6 - Show loading status to the user while sending data; 
+6 - Show loading status to the user while sending data;
 <br>
 7 - If post is success, Scroll down and show results to the user; Done.

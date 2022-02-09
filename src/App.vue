@@ -85,7 +85,7 @@
 <script>
 import Vue from "vue";
 import titleMixin from "./mixins/titleMixin";
-import { getData, sendData } from "../services/userData";
+import { getData, sendData, verifyEmail } from "../services/userData";
 import Input from "./components/Input.vue";
 
 Vue.mixin(titleMixin);
@@ -180,6 +180,12 @@ export default {
 
       if (user.password != user.confirmPassword) {
         this.errorMessage = "As senhas não coincidem.";
+        this.showErrorMessage = true;
+        return;
+      }
+
+      if (await verifyEmail(user.email)) {
+        this.errorMessage = "Este email já esta em uso.";
         this.showErrorMessage = true;
         return;
       }
