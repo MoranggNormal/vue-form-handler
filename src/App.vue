@@ -49,7 +49,7 @@
           type="submit"
           class="btn btn-primary p-3 px-5 w-auto m-auto bg-gradient mt-5"
         >
-          Criar conta
+          {{ loading ? "Enviando..." : "Criar conta" }}
         </button>
       </form>
     </div>
@@ -99,6 +99,7 @@ export default {
   data: () => {
     return {
       showErrorMessage: false,
+      loading: false,
       errorMessage: "",
       status: "",
       users: "",
@@ -164,6 +165,8 @@ export default {
   },
   methods: {
     onSubmit: async function () {
+      this.loading = true;
+
       const getDataFromTemplate = this.inputTemplate.map((item) => {
         return item.value.name;
       });
@@ -181,12 +184,14 @@ export default {
       if (user.password != user.confirmPassword) {
         this.errorMessage = "As senhas não coincidem.";
         this.showErrorMessage = true;
+        this.loading = false;
         return;
       }
 
       if (await verifyEmail(user.email)) {
         this.errorMessage = "Este email já esta em uso.";
         this.showErrorMessage = true;
+        this.loading = false;
         return;
       }
 
@@ -199,6 +204,7 @@ export default {
 
         this.errorMessage = "";
         this.showErrorMessage = false;
+        this.loading = false;
       } catch (error) {
         return error;
       }
@@ -210,6 +216,9 @@ export default {
           behavior: "smooth",
         });
       }
+      setTimeout(() => {
+        this.status = "";
+      }, 5000);
     },
   },
   async created() {
