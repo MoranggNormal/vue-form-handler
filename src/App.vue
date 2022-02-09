@@ -70,7 +70,7 @@
           <tr v-for="user in users" :key="user.id">
             <th scope="row">{{ user.id }}</th>
             <td>{{ user.name }}</td>
-            <td v-if="user.phone">{{ user.phone }}</td>
+            <td>{{ user.phone }}</td>
             <td>{{ user.birthDate }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.cpf }}</td>
