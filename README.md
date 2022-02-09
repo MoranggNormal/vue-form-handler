@@ -12,6 +12,26 @@
 <br>
 6 - Verify if email already exists on database; Done.
 <br>
-6 - Show loading status to the user while sending data;
+6 - Show loading status to the user while sending data; Done.
 <br>
 7 - If post is success, Scroll down and show results to the user; Done.
+<br>
+8 - Verify pattern on submit; Done.
+
+# What is this
+
+#### This is a test provived by Auryn...
+
+If you somehow wants to run the code, then:
+
+Clone the repo;
+<br>
+Open your terminal and go to the repo folder;
+<br>
+Run: <code> npm install</code> or <code> yarn </code>
+
+#### Warning:
+
+It won't work properly whitout an api. Here i made the api using Symfony on Back-end.
+<br>
+See the endpoint on: <code>/services/baseUrl.js</code>
