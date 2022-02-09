@@ -184,7 +184,7 @@ export default {
 
       try {
         this.status = await sendData(
-          `http://localhost:9090/user/create-user/name=${user.name}&phone=${user.phone}&birthDate=${user.birthDate}&email=${user.email}&password=${user.password}&cpf=${user.cpf})`
+          `http://localhost:9090/user/create-user/name=${user.name}&phone=${user.phone}&birthDate=${user.birthDate}&email=${user.email}&password=${user.password}&cpf=${user.cpf}`
         );
 
         this.users = await getData("/all-users");
