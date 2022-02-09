@@ -38,7 +38,11 @@
     </div>
 
     <div class="container table my-4 col-lg-6 col-xl-8">
-      <table id="cadastros" class="table table-striped mt-5">
+      <div class="alert alert-danger" v-if="!users">
+        Nenhum usúario cadastrado até o momento.
+      </div>
+
+      <table id="cadastros" class="table table-striped mt-5" v-if="users">
         <thead>
           <tr>
             <th scope="col">ID</th>
@@ -68,6 +72,7 @@
 <script>
 import Vue from "vue";
 import titleMixin from "./mixins/titleMixin";
+import axios from "axios";
 import Input from "./components/Input.vue";
 
 Vue.mixin(titleMixin);
@@ -82,24 +87,7 @@ export default {
     return {
       showErrorMessage: false,
       errorMessage: "",
-      users: [
-        {
-          id: 1,
-          name: "Euller",
-          email: "peixotoeuller500@gmail.com",
-          phone: "81987430455",
-          birthDate: "20/10/2001",
-          cpf: "111.111.111-00",
-        },
-        {
-          id: 2,
-          name: "Morango",
-          email: "morango500@gmail.com",
-          phone: "323456323434",
-          birthDate: "20/10/2099",
-          cpf: "111.111.111-99",
-        },
-      ],
+      users: "",
       inputTemplate: [
         {
           htmlClass: "form-floating mb-3",
@@ -186,6 +174,11 @@ export default {
       this.showErrorMessage = false;
       console.log(user);
     },
+  },
+  mounted() {
+    axios
+      .get("http://localhost:9090/user/all-users")
+      .then((response) => (this.users = response.data));
   },
 };
 </script>
