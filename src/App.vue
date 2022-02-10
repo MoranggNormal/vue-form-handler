@@ -66,11 +66,18 @@
         </div>
 
         <button
+          v-if="!loading"
           type="submit"
           class="btn btn-primary p-3 px-5 w-auto m-auto bg-gradient mt-5"
         >
-          {{ loading ? "Enviando..." : "Criar conta" }}
+          Criar conta
         </button>
+
+        <div v-if="loading" class="mt-5 pt-2 px-5 w-auto m-auto">
+          <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
       </form>
     </div>
 
