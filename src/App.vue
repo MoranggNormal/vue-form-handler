@@ -197,6 +197,7 @@ export default {
 
       // Set loading status
       this.loading = true;
+      this.showErrorMessage = false;
 
       // Return if passwords dont match
       if (user.password != user.confirmPassword) {
