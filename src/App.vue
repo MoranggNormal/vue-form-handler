@@ -87,6 +87,7 @@ import Vue from "vue";
 import titleMixin from "./mixins/titleMixin";
 import { getData, sendData, verifyEmail } from "../services/userData";
 import Input from "./components/Input.vue";
+import inputTemplate from './utils/inputTemplate'
 
 Vue.mixin(titleMixin);
 
@@ -103,66 +104,7 @@ export default {
       errorMessage: "",
       status: "",
       users: "",
-      inputTemplate: [
-        {
-          htmlClass: "form-floating mb-3",
-          id: "name",
-          type: "string",
-          value: { name: "" },
-          placeholder: "Conte-nos seu nome",
-          errorMessage: "O campo deve ter no mínimo 3 caracteres.",
-        },
-        {
-          htmlClass: "form-floating mb-3",
-          id: "phone",
-          type: "number",
-          value: { name: "" },
-          placeholder: "Precisamos de seu telefone",
-          errorMessage: "Insira um telefone válido.",
-        },
-        {
-          htmlClass: "form-floating mb-3 col-sm-6",
-          id: "birthDate",
-          type: "date",
-          value: { name: "" },
-          placeholder: "Data de nascimento",
-          errorMessage: "Insira uma data válida.",
-        },
-        {
-          htmlClass: "form-floating mb-3 col-sm-6",
-          id: "email",
-          type: "email",
-          value: { name: "" },
-          placeholder: "Digite seu e-mail",
-          errorMessage: "Insira um e-mail válido.",
-        },
-        {
-          htmlClass: "form-floating col-sm-6",
-          id: "password",
-          type: "password",
-          value: { name: "" },
-          placeholder: "Digite uma senha",
-          errorMessage:
-            "No mínimo 8 caracteres, 1 letra minuscula, 1 maiuscula e 1 simbolo.",
-        },
-        {
-          htmlClass: "form-floating col-sm-6",
-          id: "confirm-password",
-          type: "password",
-          value: { name: "" },
-          placeholder: "Confirme sua senha",
-          errorMessage:
-            "No mínimo 8 caracteres, 1 letra minuscula, 1 maiuscula e 1 simbolo.",
-        },
-        {
-          htmlClass: "form-floating my-3",
-          id: "cpf",
-          type: "text",
-          value: { name: "" },
-          placeholder: "Digite seu CPF",
-          errorMessage: "Insira um CPF válido.",
-        },
-      ],
+      inputTemplate: inputTemplate
     };
   },
   methods: {
