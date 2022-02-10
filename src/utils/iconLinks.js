@@ -12,7 +12,7 @@ export default [
     icon: "fa-brands fa-linkedin",
   },
   {
-    link: "https://www.facebook.com/euller.peixoto.18",
+    link: "https://epeixoto.me",
     icon: "fa-solid fa-square-arrow-up-right",
   },
 ];
