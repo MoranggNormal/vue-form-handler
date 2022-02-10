@@ -167,11 +167,12 @@ export default {
   },
   methods: {
     onSubmit: async function () {
-      // Store typed data into an array and then into an object
+      // Store typed data into an array and then ...
       const getDataFromTemplate = this.inputTemplate.map((item) => {
         return item.value.name;
       });
 
+      // ... into an object
       const user = {
         name: getDataFromTemplate[0],
         phone: getDataFromTemplate[1],
