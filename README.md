@@ -29,6 +29,7 @@ Clone the repo;
 Open your terminal and go to the repo folder;
 <br>
 Run: <code> npm install</code> or <code> yarn </code>
+
 Finally, run: <code>npm rum serve</code>
 
 #### Warning:
