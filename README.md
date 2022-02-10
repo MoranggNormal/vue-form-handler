@@ -30,7 +30,7 @@ Open your terminal and go to the repo folder;
 <br>
 Run: <code> npm install</code> or <code> yarn </code>
 
-Once the dependencies are all installed, run: <code>npm rum serve</code>
+Once the dependencies are all installed, run: <code>npm run serve</code>
 
 #### Warning:
 
