@@ -142,7 +142,8 @@ export default {
           type: "password",
           value: { name: "" },
           placeholder: "Digite uma senha",
-          errorMessage: "O formato da senha está inválido.",
+          errorMessage:
+            "No mínimo 8 caracteres, 1 letra minuscula, 1 maiuscula e 1 simbolo.",
         },
         {
           htmlClass: "form-floating col-sm-6",
@@ -150,7 +151,8 @@ export default {
           type: "password",
           value: { name: "" },
           placeholder: "Confirme sua senha",
-          errorMessage: "O formato da senha está inválido.",
+          errorMessage:
+            "No mínimo 8 caracteres, 1 letra minuscula, 1 maiuscula e 1 simbolo.",
         },
         {
           htmlClass: "form-floating my-3",
