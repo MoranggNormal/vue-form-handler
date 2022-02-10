@@ -9,11 +9,11 @@ import {
   faFacebook,
 } from "@fortawesome/free-brands-svg-icons";
 
-import { faSquareArrowUpRight } from "@fortawesome/free-solid-svg-icons";
+import { faSquareArrowUpRight, faHeart } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-library.add(faGithub, faLinkedin, faFacebook, faSquareArrowUpRight);
+library.add(faGithub, faLinkedin, faFacebook, faSquareArrowUpRight, faHeart);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

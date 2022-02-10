@@ -98,6 +98,28 @@
         </tbody>
       </table>
     </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-center text-white">
+      <div class="container p-4">
+        <section class="mb-2">
+          <ul
+            class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0"
+          >
+            <li v-for="props in icons" :key="props.icon">
+              <a :href="props.link" class="nav-link px-2 link-light">
+                <Icons :icon="props.icon" />
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        Made with <font-awesome-icon icon="fa-solid fa-heart" /> By
+        <a class="text-white" href="https://epeixoto.me"> Euller Peixoto</a>
+      </div>
+    </footer>
   </div>
 </template>
 
