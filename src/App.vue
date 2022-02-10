@@ -165,7 +165,6 @@ export default {
   },
   methods: {
     onSubmit: async function () {
-
       // Store typed data into an array and then into an object
       const getDataFromTemplate = this.inputTemplate.map((item) => {
         return item.value.name;
@@ -223,7 +222,9 @@ export default {
           `http://localhost:9090/user/create-user/name=${user.name}&phone=${user.phone}&birthDate=${user.birthDate}&email=${user.email}&password=${user.password}&cpf=${user.cpf}`
         );
 
-        this.users = await getData("/all-users");
+        const getNewUser = await getData("/last-created-user");
+
+        this.users = [...getNewUser, ...this.users];
 
         this.errorMessage = "";
         this.showErrorMessage = false;
