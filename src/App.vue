@@ -1,6 +1,66 @@
 <template>
   <div id="app">
-    <div class="container my-4 col-lg-6 col-xl-4">
+    <header
+      class="
+        d-flex
+        flex-wrap
+        align-items-center
+        justify-content-center
+        mb-4
+        border-bottom
+        bg-primary
+      "
+    >
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li>
+          <a
+            href="https://github.com/MoranggNormal/vue-form-handler"
+            class="nav-link px-2 link-light"
+          >
+            <font-awesome-icon
+              icon="fa-brands fa-github"
+              size="2x"
+              fixed-width
+              swap-opacity
+          /></a>
+        </li>
+
+        <li>
+          <a
+            href="https://www.facebook.com/euller.peixoto.18"
+            class="nav-link px-2 link-light"
+            ><font-awesome-icon
+              icon="fa-brands fa-facebook"
+              size="2x"
+              fixed-width
+              swap-opacity
+          /></a>
+        </li>
+        <li>
+          <a
+            href="https://www.linkedin.com/in/euller-peixoto"
+            class="nav-link px-2 link-light"
+            ><font-awesome-icon
+              icon="fa-brands fa-linkedin"
+              size="2x"
+              fixed-width
+              swap-opacity
+          /></a>
+        </li>
+        <li>
+          <a href="http://epeixoto.me" class="nav-link px-2 link-light">
+            <font-awesome-icon
+              icon="fa-solid fa-square-arrow-up-right"
+              size="2x"
+              fixed-width
+              swap-opacity
+            />
+          </a>
+        </li>
+      </ul>
+    </header>
+
+    <div class="container mt-5 mb-4 col-lg-6 col-xl-4">
       <div class="d-flex justify-content-center">
         <img
           src="https://memorar.fot.br/images/company/memorar.fot.br.png"
@@ -87,7 +147,7 @@ import Vue from "vue";
 import titleMixin from "./mixins/titleMixin";
 import { getData, sendData, verifyEmail } from "../services/userData";
 import Input from "./components/Input.vue";
-import inputTemplate from './utils/inputTemplate'
+import inputTemplate from "./utils/inputTemplate";
 
 Vue.mixin(titleMixin);
 
@@ -104,7 +164,7 @@ export default {
       errorMessage: "",
       status: "",
       users: "",
-      inputTemplate: inputTemplate
+      inputTemplate: inputTemplate,
     };
   },
   methods: {
